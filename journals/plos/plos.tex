@@ -1,0 +1,94 @@
+% PLOS journals, following PLOS's own LaTeX template (plain article class; the
+% only file used from it is plos2025.bst).
+% Differences from PLOS's template, kept deliberately small:
+%   - natbib (numbers) replaces the cite package, so the shared text's \citep
+%     works unchanged. The output is the same numbered Vancouver style.
+%   - Section numbering is switched off here, not by rewriting paper.tex.
+%   - Figures are not included: PLOS wants captions in the text and the image
+%     files uploaded separately (the bundle renames them Fig1.tif, ...).
+\documentclass[10pt,letterpaper]{article}
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\usepackage[numbers,sort&compress]{natbib}
+\input{preamble}
+\usepackage{changepage}
+\usepackage{textcomp,marvosym}
+\usepackage{nameref,hyperref}
+\usepackage[right]{lineno}
+\usepackage[nopatch=eqnum]{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\usepackage{lastpage,fancyhdr}
+
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in
+\textheight 8.75in
+\renewcommand{\figurename}{Fig}
+\setcounter{secnumdepth}{0}
+\bibliographystyle{plos2025}
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+\renewcommand{\includegraphics}[2][]{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\today}
+
+% PLOS sets authors as a run of names with superscript affiliations, and
+% lists corresponding authors' emails after the affiliations.
+\makeatletter
+\def\plos@sep{}
+\def\plos@emails{}
+\newcommand{\paperauthor}[3]{\plos@sep#1 #2\textsuperscript{#3}\def\plos@sep{, }}
+\newcommand{\correspondingauthor}[4]{%
+  \plos@sep#1 #2\textsuperscript{#3*}\def\plos@sep{, }%
+  \g@addto@macro\plos@emails{\plos@esep#4\def\plos@esep{, }}}
+\newcommand{\paperaffiliation}[5]{\textbf{#1} #2, #3, #4, #5\\}
+\newcommand{\paperemails}{{\def\plos@esep{}\plos@emails}}
+\makeatother
+
+\begin{document}
+\vspace*{0.2in}
+
+\begin{flushleft}
+{\Large
+\textbf{\papertitle}
+}
+\newline
+\\
+\paperauthors
+\\
+\bigskip
+\paperaffiliations
+\bigskip
+* \paperemails
+\end{flushleft}
+
+\section*{Abstract}
+\paperabstract
+
+\section*{Author summary}
+PLOS asks for a plain-language summary for non-specialists (150--200 words).
+Only PLOS uses one, so it is written in \texttt{journals/plos/plos.tex} rather
+than in \texttt{metadata.tex}.
+
+\linenumbers
+
+\input{paper}
+
+\section*{Supporting information}
+\paragraph*{S1 Appendix.}
+\textbf{Supplementary information.} Cross-references between documents and an
+example data figure.
+
+\section*{Acknowledgments}
+\paperacknowledgements
+
+\bibliography{refs}
+\end{document}

@@ -1,0 +1,25 @@
+% Packages the main text relies on. Every main-text wrapper loads this straight
+% after its \documentclass, then adds only what that version needs.
+%
+% Keep this list short. Journal systems re-compile the source with their own,
+% often older, TeX installations, and pandoc (for .docx) understands only
+% standard LaTeX. natbib is loaded by each wrapper, because some journal
+% classes load it themselves with their own options.
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\graphicspath{{figures/}}
+
+% \linelabel comes from lineno, which not every version loads.
+\AtBeginDocument{\providecommand{\linelabel}[1]{}}
+
+\input{macros}
+
+% Title, authors, abstract and statements. Each wrapper sets the author lists
+% by defining \paperauthor, \correspondingauthor and \paperaffiliation.
+\input{metadata}
+
+% Labels from the supplement (all prefixed S:), extracted by the Makefile from
+% build/supplement.aux, so the main text can write \ref{S:fig:growth}.
+% Submission bundles replace these references with plain numbers.
+\input{build/supp-labels}

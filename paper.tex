@@ -1,0 +1,116 @@
+% The main text, shared by every version. Title, authors, abstract and the
+% back-matter statements are in metadata.tex. Keep Methods as a single
+% \section{Methods}: the Nature build moves that section to the end.
+
+\section{Introduction}\label{sec:intro}
+
+This is the template's example paper. Each part of it, from the sections,
+equations, figure and table to the citations and references into the
+supplement, is here to show a feature, and the text explains how that feature
+is written and built. Replace it with your own paper.
+
+A paper is now read in several forms: a preprint, a copy with line numbers for
+co-authors and reviewers, and one or more journal submissions. Most journals
+accept almost any PDF at first submission, but at acceptance they want editable
+source, in practice LaTeX \citep{lamport1994} or Word. The template therefore
+keeps a single LaTeX source and builds every version from it, with each
+journal's formatting kept out of the text.
+
+\section{Methods}\label{sec:methods}
+
+\subsection{Source files}
+
+The writing lives in three files. \texttt{metadata.tex} holds the title,
+authors, affiliations, abstract and statements; \texttt{paper.tex} holds this
+text; and \texttt{supplement.tex} holds the supplementary information.
+References are kept in \texttt{refs.bib} and cited by key, with BibTeX
+formatting them in each journal's style \citep{patashnik1988}. Figures are
+produced elsewhere and copied into \texttt{figures/} as finished files.
+
+\subsection{Building each version}
+
+Each version has a short wrapper that sets the document class and layout,
+defines how the authors in \texttt{metadata.tex} are set in that class, and
+includes the shared text. Running \texttt{make} compiles each wrapper with
+pdfLaTeX and BibTeX (Fig.~\ref{fig:pipeline}). For a journal it can also make
+a submission bundle: the wrapper flattened into one file with the bibliography
+pasted in and references into the supplement written as plain numbers,
+together with the figures and the journal's class files. The Nature build
+moves this Methods section after the Discussion, as Nature Portfolio journals
+require, which is why Methods must stay a single section.
+
+\subsection{Equations}
+
+Equations use standard \texttt{amsmath} environments and are numbered in every
+version. For example, the logistic model of population growth
+\citep{verhulst1838} is
+\begin{equation}
+  \frac{\dd N}{\dd t} = r N \left(1 - \frac{N}{K}\right),
+  \qquad N(0) = N_0 ,
+  \label{eq:logistic}
+\end{equation}
+where $r$ is the growth rate and $K$ the carrying capacity. Equation~\eqref{eq:logistic}
+has the solution
+\begin{equation}
+  N(t) = \frac{K}{1 + \left(K/N_0 - 1\right) e^{-r t}} .
+  \label{eq:solution}
+\end{equation}
+Notation shortcuts such as the upright differential in
+Eq.~\eqref{eq:logistic} are defined once in \texttt{macros.tex}.
+
+\section{Results}\label{sec:results}
+
+Figure~\ref{fig:pipeline} shows how the source files become the finished
+versions, and Table~\ref{tab:versions} compares the example versions. Tables
+use \texttt{booktabs} rules, and the grouped column headings show that
+spanning columns survive every build.
+
+\linelabel{rev:linelabels}A sentence can be marked with a line label, which
+lets a response to reviewers quote its line number in the review copy. The
+main text can also refer into the supplement: an example data figure is
+Supplementary Fig.~\ref{S:fig:growth}, and Supplementary
+Note~\ref{S:sec:crossrefs} explains how references between the two documents
+are resolved.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=\linewidth]{pipeline}
+  \caption{\textbf{From source files to finished versions.} The shared text
+    and metadata are included by one wrapper per version, which
+    \texttt{make} compiles. Submission bundles are also flattened into a
+    single file with the bibliography and supplementary numbers written in.
+    Everything finished goes to \texttt{output/}.}
+  \label{fig:pipeline}
+\end{figure}
+
+\begin{table}[tbp]
+  \centering
+  \caption{\textbf{How the example versions differ.} The text is identical in
+    all of them.}
+  \label{tab:versions}
+  \begin{tabular}{lllll}
+    \toprule
+            & \multicolumn{2}{c}{Layout} & \multicolumn{2}{c}{Citations} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}
+    Version & Line numbers & Figures & Style & Order \\
+    \midrule
+    Preprint       & No  & In text  & Numbered    & Citation \\
+    Review         & Yes & In text  & Numbered    & Citation \\
+    Nature         & Yes & In text  & Numbered    & Citation \\
+    PLOS           & Yes & Separate & Vancouver   & Citation \\
+    Bioinformatics & Yes & In text  & Author--year & Alphabetical \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Discussion}\label{sec:discussion}
+
+The template trades a few conveniences for portability. Citations are made
+with one command so that numbered and author--year styles both work, and the
+text avoids packages that journal classes or pandoc \citep{macfarlane2006} do
+not support. It deliberately stops short of producing a finished journal
+file: the journal folders are examples to be refreshed from each publisher's
+current template, and the accepted version will usually need some tuning by
+hand, for example replacing the few metadata commands with plain text where a
+journal asks for no personal macros. The Word copy is meant for sharing drafts
+rather than for submission.

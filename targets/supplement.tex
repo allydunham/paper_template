@@ -1,0 +1,43 @@
+% Supplementary information: sets supplement.tex as a separate PDF that goes
+% alongside every version. The main text refers into it with S: labels; it
+% refers back to the main text with M: labels, read from the preprint build.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\graphicspath{{figures/}}
+\input{macros}
+\input{metadata}
+\bibliographystyle{unsrtnat}
+
+\usepackage{xr}
+\externaldocument[M:]{build/preprint}
+
+\usepackage[hidelinks]{hyperref}
+
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\theequation}{S\arabic{equation}}
+
+% Authors as a plain comma-separated list; affiliations are left to the main text.
+\makeatletter
+\def\supp@sep{}
+\newcommand{\paperauthor}[3]{\supp@sep#1 #2\def\supp@sep{, }}
+\newcommand{\correspondingauthor}[4]{\paperauthor{#1}{#2}{#3}}
+\makeatother
+
+\title{Supplementary information for\\\papertitle}
+\author{\paperauthors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{supplement}
+
+\bibliography{refs}
+\end{document}

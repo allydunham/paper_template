@@ -1,0 +1,50 @@
+% Everything about the paper except the main text: title, authors, abstract
+% and back-matter statements. Every version reads this file and sets it in its
+% own style, so this is the only place to edit them.
+
+\newcommand{\papertitle}{A single-source LaTeX template for computational biology papers}
+\newcommand{\papershorttitle}{Single-source paper template}
+\newcommand{\papershortauthors}{Author et al.}
+\newcommand{\paperkeywords}{LaTeX, BibTeX, journal submission, preprints}
+
+% Authors, in order. Mark any number of corresponding authors.
+%   \paperauthor{Given}{Family}{affiliation numbers}
+%   \correspondingauthor{Given}{Family}{affiliation numbers}{email}
+\newcommand{\paperauthors}{%
+  \correspondingauthor{First}{Author}{1}{first.author@example.org}%
+  \paperauthor{Second}{Author}{1,2}%
+}
+
+%   \paperaffiliation{number}{Department}{Institution}{City}{Country}
+\newcommand{\paperaffiliations}{%
+  \paperaffiliation{1}{Department}{Institution}{City}{Country}%
+  \paperaffiliation{2}{Department}{Institution}{City}{Country}%
+}
+
+% One paragraph, no citations: most journals forbid them in the abstract.
+\newcommand{\paperabstract}{%
+This document is both the example paper and the documentation for a LaTeX
+template. It is written once and built as a styled preprint, a review copy
+with line numbers, a supplement and journal submissions whose source is plain
+LaTeX in each journal's own format. The abstract, like the title, authors and
+statements, is written once in \texttt{metadata.tex}; replace this text with
+your own, keeping to one paragraph without citations.}
+
+\newcommand{\paperacknowledgements}{%
+Statements such as this one are written once in \texttt{metadata.tex} and
+placed wherever, and under whatever heading, each version needs them.}
+
+\newcommand{\paperfunding}{%
+Funding statement, for example: This work was supported by [funder]
+[grant number].}
+
+\newcommand{\papercompeting}{%
+Competing interests statement, for example: The authors declare no competing
+interests.}
+
+\newcommand{\paperavailability}{%
+Data and code availability statement, for example: Code to reproduce the
+analyses is available at [repository URL].}
+
+\newcommand{\papercontributions}{%
+Author contributions statement, for example using CRediT roles.}

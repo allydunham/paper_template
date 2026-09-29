@@ -1,0 +1,47 @@
+% Nature Portfolio journals, via the Springer Nature template (sn-jnl.cls with
+% the sn-nature reference style). Nature Portfolio puts Methods last, so this
+% reads build/paper-methods-last.tex, which the Makefile generates from paper.tex.
+\documentclass[pdflatex,sn-nature,lineno]{sn-jnl}
+\input{preamble}
+\raggedbottom
+
+\newcommand{\paperauthor}[3]{\author[#3]{\fnm{#1} \sur{#2}}}
+\newcommand{\correspondingauthor}[4]{\author*[#3]{\fnm{#1} \sur{#2}}\email{#4}}
+\newcommand{\paperaffiliation}[5]{\affil[#1]{\orgdiv{#2}, \orgname{#3}, \orgaddress{\city{#4}, \country{#5}}}}
+
+\begin{document}
+
+\title[\papershorttitle]{\papertitle}
+\paperauthors
+\paperaffiliations
+\abstract{\paperabstract}
+\keywords{\paperkeywords}
+
+\maketitle
+
+\input{build/paper-methods-last}
+
+\backmatter
+
+\bmhead{Supplementary information}
+Supplementary information is provided as a separate PDF.
+
+\bmhead{Acknowledgements}
+\paperacknowledgements
+
+\section*{Declarations}
+
+\bmhead{Funding}
+\paperfunding
+
+\bmhead{Competing interests}
+\papercompeting
+
+\bmhead{Data and code availability}
+\paperavailability
+
+\bmhead{Author contributions}
+\papercontributions
+
+\bibliography{refs}
+\end{document}

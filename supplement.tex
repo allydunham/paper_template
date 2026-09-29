@@ -1,0 +1,33 @@
+% Supplementary information, set by targets/supplement.tex. Label everything
+% here with an S: prefix (\label{S:fig:growth}) and refer back to the main
+% text with an M: prefix (\ref{M:eq:logistic}).
+
+\section{Cross-references between documents}\label{S:sec:crossrefs}
+
+The supplement is a separate document with its own numbering: sections,
+figures, tables and equations here are numbered S1, S2 and so on. Labels in
+this file start with \texttt{S:}, and the main text refers to them in the
+usual way. This document refers back to the main text with an \texttt{M:}
+prefix; for example, Eq.~\eqref{M:eq:solution} of the main text gives the time
+at which the population reaches half its carrying capacity,
+\begin{equation}
+  t_{1/2} = \frac{1}{r} \ln\!\left(\frac{K}{N_0} - 1\right) .
+  \label{S:eq:halftime}
+\end{equation}
+Journals receive the supplement as a separate file, so submission bundles
+write references to it as plain numbers (``Supplementary Fig.~S1'') rather
+than as references another file must supply.
+
+\section{Example data figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{growth}
+  \caption{\textbf{An example data figure.} (a) Solutions of
+    Eq.~\eqref{M:eq:solution} for three growth rates, with $K = 100$ and
+    $N_0 = 5$. (b) The same curves scaled by $K$; each crosses $0.5$ at the
+    time given by Eq.~\eqref{S:eq:halftime}. Drawn with Matplotlib
+    \citep{hunter2007} and copied into \texttt{figures/} as PDF, PNG and
+    TIFF.}
+  \label{S:fig:growth}
+\end{figure}

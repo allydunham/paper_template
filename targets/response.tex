@@ -1,0 +1,28 @@
+% Response to reviewers. Line and figure numbers are read from the review
+% build (prefix R:); mark a line in the body with \linelabel{rev:name} and
+% cite it here as \ref{R:rev:name}. To quote a journal build instead, change
+% build/review below to that target (e.g. build/plos); it must load lineno.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{xr}
+\externaldocument[R:]{build/review}
+\externaldocument[R:]{build/supplement}
+\usepackage[hidelinks]{hyperref}
+
+\newenvironment{reviewer}{\begin{quote}\itshape}{\end{quote}}
+
+\begin{document}
+\section*{Response to reviewers}
+
+\subsection*{Reviewer 1}
+
+\begin{reviewer}
+The authors should show how a response can point reviewers to specific lines.
+\end{reviewer}
+
+\noindent The sentence on line~\ref{R:rev:linelabels} of the review copy now explains
+this, and an example data figure is shown in Supplementary
+Fig.~\ref{R:S:fig:growth}.
+
+\end{document}

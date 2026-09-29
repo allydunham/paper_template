@@ -1,0 +1,72 @@
+% Bioinformatics (OUP), via the OUP authoring template. Bioinformatics cites
+% author-year (namedate option); OUP supplies no .bst, so plainnat is used.
+% Original Papers need a structured abstract, so it is written here rather
+% than taken from metadata.tex.
+\documentclass[webpdf,modern,large,namedate]{oup-authoring-template}
+\input{preamble}
+\usepackage{lineno}
+\bibliographystyle{plainnat}
+
+% OUP marks corresponding authors with an asterisk and one \corresp line.
+\makeatletter
+\def\oup@emails{}
+\newcommand{\paperauthor}[3]{\author[#3]{#1 #2}}
+\newcommand{\correspondingauthor}[4]{%
+  \author[#3,$\ast$]{#1 #2}%
+  \g@addto@macro\oup@emails{\oup@sep\href{mailto:#4}{#4}\def\oup@sep{, }}}
+\newcommand{\paperaffiliation}[5]{\address[#1]{\orgdiv{#2}, \orgname{#3}, \orgaddress{\state{#4}, \country{#5}}}}
+\newcommand{\paperemails}{{\def\oup@sep{}\oup@emails}}
+\makeatother
+
+\begin{document}
+
+\journaltitle{Bioinformatics}
+\DOI{DOI HERE}
+\copyrightyear{2026}
+\pubyear{2026}
+\access{Advance Access Publication Date: Day Month Year}
+\appnotes{Original Paper}
+
+\firstpage{1}
+
+\title[\papershorttitle]{\papertitle}
+\paperauthors
+\authormark{\papershortauthors}
+\paperaffiliations
+\corresp[$\ast$]{Corresponding author. \paperemails}
+
+\received{Date}{0}{Year}
+\revised{Date}{0}{Year}
+\accepted{Date}{0}{Year}
+
+\abstract{%
+\textbf{Motivation:} Bioinformatics asks for a structured abstract, so it is
+written in \texttt{journals/bioinformatics/bioinformatics.tex}.\\
+\textbf{Results:} The availability statement and contact below still come
+from \texttt{metadata.tex}.\\
+\textbf{Availability and implementation:} \paperavailability\\
+\textbf{Contact:} \paperemails\\
+\textbf{Supplementary information:} Supplementary data are available at
+\textit{Bioinformatics} online.}
+
+\keywords{\paperkeywords}
+
+\maketitle
+\linenumbers
+
+\input{paper}
+
+\section*{Acknowledgements}
+\paperacknowledgements
+
+\section*{Funding}
+\paperfunding
+
+\section*{Conflict of interest}
+\papercompeting
+
+\section*{Data availability}
+\paperavailability
+
+\bibliography{refs}
+\end{document}

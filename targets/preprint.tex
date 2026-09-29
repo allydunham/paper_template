@@ -1,0 +1,63 @@
+% Preprint: bioRxiv (upload the PDF) or arXiv (upload the source flattened
+% with `latexpand`, plus the figures and build/preprint.bbl).
+% targets/review.tex reuses this file and adds line numbers and spacing.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[numbers,sort&compress]{natbib}
+\input{preamble}
+\usepackage{authblk}
+\bibliographystyle{unsrtnat}
+\setlength{\belowcaptionskip}{6pt}  % table captions sit above the table
+
+\ifdefined\reviewmode
+  \usepackage{lineno}
+  \linenumbers
+  \usepackage{setspace}
+  \doublespacing
+\fi
+
+\usepackage[hidelinks]{hyperref}
+
+% How metadata.tex's authors are set (authblk).
+\newcommand{\paperauthor}[3]{\author[#3]{#1 #2}}
+\newcommand{\correspondingauthor}[4]{\author[#3]{#1 #2\thanks{Corresponding author: \href{mailto:#4}{#4}}}}
+\newcommand{\paperaffiliation}[5]{\affil[#1]{#2, #3, #4, #5}}
+
+\title{\papertitle}
+\paperauthors
+\paperaffiliations
+\ifdefined\reviewmode
+  \date{Draft \input{build/version}}
+\else
+  \date{}
+\fi
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\paperabstract
+\end{abstract}
+
+\noindent\textbf{Keywords:} \paperkeywords
+
+\input{paper}
+
+\section*{Acknowledgements}
+\paperacknowledgements
+
+\section*{Funding}
+\paperfunding
+
+\section*{Data and code availability}
+\paperavailability
+
+\section*{Author contributions}
+\papercontributions
+
+\section*{Competing interests}
+\papercompeting
+
+\bibliography{refs}
+\end{document}
